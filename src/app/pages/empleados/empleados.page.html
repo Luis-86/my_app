@@ -1,0 +1,87 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de empleados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list (ngSubmit)="guardarEmpleado">
+    <ion-item>
+      <ion-label>ID: {{empleado.id}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombres:</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.nombres"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Apellidos:</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.apellidos"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cedula:</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.cedula"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cargo:</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.cargo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Sueldo:</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.sueldo"></ion-input>
+    </ion-item>
+   
+
+    <ion-item>
+      <ion-label>Telefono:</ion-label>
+      <ion-input type="number" [(ngModel)]="empleado.telefono"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button (click)="guardarEmpleado()" expand="block" type="button" class="btn btn-primary btn-lg">AGREGAR</button>
+    <button (click)="nuevoEmpleado()" expand="block" type="button" class="btn btn-secondary btn-lg">EDITAR</button>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label style="text-align:center ;">Lista Empleados</ion-label>
+    </ion-list-header>
+
+    <ion-list *ngFor="let item of listaEmpleados; let pos=index">
+      <ion-item  color="secondary">
+        <ion-label (click)="editarEmpleado(item)">{{item.nombres}}</ion-label>
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+
+        <ion-label (click)="editarEmpleado(item)">{{item.apellidos}}</ion-label>
+        <ion-label (click)="editarEmpleado(item)">{{item.cedula}}</ion-label>
+        <ion-label (click)="editarEmpleado(item)">{{item.cargo}}</ion-label>
+        <ion-label (click)="editarEmpleado(item)">{{item.sueldo | currency:'USD' }}</ion-label>
+
+        <ion-label>{{item.telefono}}</ion-label>
+        <ion-icon color="danger" slot="end" (click)="eliminarEmpleado(pos)" name="trash-outline"></ion-icon>
+        
+      </ion-item>
+    </ion-list>
+  </ion-list>
+</ion-content>
+
+
+
+<ion-footer collapse="fade">
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon name="people-outline" slot="end"></ion-icon>
+      <ion-icon name="logo-whatsapp" slot="end"></ion-icon>
+    <ion-button (click)="onClick()">
+      <ion-icon slot="icon-only" name="add">
+      </ion-icon>
+    </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
+
